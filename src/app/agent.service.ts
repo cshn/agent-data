@@ -7,7 +7,7 @@ import {Transaction} from './model/transaction';
   providedIn: 'root'
 })
 export class AgentService {
-  private agentDataUrl = 'https://data.gov.sg/api/action/datastore_search?resource_id=8a087b7c-a11b-4da8-bbb6-ac933f465acd&limit=70000';  // URL to web api
+  private agentDataUrl = 'https://data.gov.sg/api/action/datastore_search?resource_id=8a087b7c-a11b-4da8-bbb6-ac933f465acd&limit=80000';  // URL to web api
   
   constructor(private http: HttpClient) { }
   
