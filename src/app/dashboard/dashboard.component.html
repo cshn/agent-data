@@ -1,0 +1,25 @@
+    <div class="container-fluid">
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>salesperson_reg_no</th>
+                <th>town_txt</th>
+                <th>salesperson_name</th>
+                <th>complete_date_txt</th>
+                <th>represented</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let t of transactions">
+              <tr>
+                <td>{{t.salesperson_reg_no}}</td>
+                <td>{{t.town_txt}}</td>
+                <td>{{t.salesperson_name}}</td>
+                <td>{{t.complete_date_txt}}</td>
+                <td>{{t.represented}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>  
+      </div>
+      
