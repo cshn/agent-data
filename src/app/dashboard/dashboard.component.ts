@@ -33,9 +33,9 @@ export class DashboardComponent implements OnInit {
   getTransactionData(): void {
     this.agentService.getAllTransactions()
       .subscribe(transactions => {
-        console.log(transactions);
-        this.transactions = transactions.result.records;
-        this.rowData = this.transactions;
+       // console.log(transactions);
+        this.rowData = transactions.result.records;
+       // this.rowData = this.transactions;
       });
   }
 
