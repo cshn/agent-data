@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ChartsModule } from 'ng2-charts';
 
 import { HttpClientModule }    from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
@@ -27,7 +27,8 @@ import { DashboardActiveAgentComponent } from './dashboard-active-agent/dashboar
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    AgGridModule
+    AgGridModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

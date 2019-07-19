@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from '../agent.service';
 import { Transaction } from '../model/transaction';
+import { IHash } from '../model/ihash';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,12 @@ import { Transaction } from '../model/transaction';
 export class DashboardComponent implements OnInit {
 
   transactions: Transaction[];
+  areaSet = new Set();
+  agentSet = new Set();
+  agentHash : IHash = {};
   private gridApi;
   private gridColumnApi;
+  showbutton = 0;
  
   constructor(private agentService: AgentService) { }
 
@@ -19,6 +24,22 @@ export class DashboardComponent implements OnInit {
     this.getTransactionData();
   }
 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+  public barChartLabels = [];
+  public barChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData = [];
+  
   columnDefs = [
     {headerName: 'salesperson_reg_no', field: 'salesperson_reg_no', filter: true, resizable: true, sortable: true},
     {headerName: 'town_txt', field: 'town_txt', filter: true, resizable: true, sortable: true},
@@ -34,7 +55,27 @@ export class DashboardComponent implements OnInit {
     this.agentService.getAllTransactions()
       .subscribe(transactions => {
         this.rowData = transactions.result.records;
+        this.rowData.forEach(e => {
+          this.areaSet.add(e.town_txt);
+          if (this.agentSet.has(e.salesperson_name)) {
+            this.agentHash[e.salesperson_name] = this.agentHash[e.salesperson_name] + 1;
+          } else {
+            this.agentSet.add(e.salesperson_name);
+            this.agentHash[e.salesperson_name] = 1;
+          }
+        })
       });
+  }
+
+  topAgent(): void {
+    var chartData = [];
+    this.agentSet.forEach(e => {
+      if(this.agentHash[e] > 140) {
+        this.barChartLabels.push(e);
+        chartData.push(this.agentHash[e]);
+      }
+    })
+    this.barChartData.push({data: chartData, label: "Top Agent"});
   }
 
   autoSizeAll() {
@@ -49,5 +90,6 @@ export class DashboardComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.autoSizeAll();
+    this.showbutton = 1;
   }
 }
