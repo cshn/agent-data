@@ -65,7 +65,9 @@ export class DashboardAreaComponent implements OnInit {
 
   getTrans(): void {
       const area = this.route.snapshot.paramMap.get('area');
-      this.agentService.getTransactionByArea(area)
+      const splittedArea = area.replace(/_/i, '/'); 
+      console.log(splittedArea);
+      this.agentService.getTransactionByArea(splittedArea)
         .subscribe(ts => {
           this.rowData = ts.result.records;
           this.rowData.forEach(e => {
@@ -91,9 +93,9 @@ export class DashboardAreaComponent implements OnInit {
       }
     })
     this.barChartData.push({data: chartData, label: "Top Agent"});
-    this.areaSet.forEach(e => {
-      console.log('{"town_txt": "' + e + '"},');
-    })
+    // this.areaSet.forEach(e => {
+    //   console.log('{"town_txt": "' + e + '"},');
+    // })
   }
 
   autoSizeAll() {

@@ -8,7 +8,7 @@ export const AREA_STATIC: Area[] = [
     {town_txt: "SENGKANG"},
     {town_txt: "CLEMENTI"},
     {town_txt: "QUEENSTOWN"},
-    {town_txt: "KALLANG/WHAMPOA"},
+    {town_txt: "KALLANG_WHAMPOA"},
     {town_txt: "JURONG EAST"},
     {town_txt: "CENTRAL AREA"},
     {town_txt: "ANG MO KIO"},

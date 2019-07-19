@@ -76,9 +76,9 @@ export class DashboardComponent implements OnInit {
       }
     })
     this.barChartData.push({data: chartData, label: "Top Agent"});
-    this.areaSet.forEach(e => {
-      console.log('{"town_txt": "' + e + '"},');
-    })
+    // this.areaSet.forEach(e => {
+    //   console.log('{"town_txt": "' + e + '"},');
+    // })
   }
 
   autoSizeAll() {
