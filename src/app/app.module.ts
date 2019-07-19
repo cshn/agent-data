@@ -11,6 +11,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DashboardActiveAgentComponent } from './dashboard-active-agent/dashboard-active-agent.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppComponent,
     DashboardComponent,
     SideBarComponent,
-    NavBarComponent
+    NavBarComponent,
+    DashboardActiveAgentComponent
   ],
   imports: [
     BrowserModule,
