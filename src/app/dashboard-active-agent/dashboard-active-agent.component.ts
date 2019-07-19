@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from '../agent.service';
-import { Agent } from '../model/agent';
 
 @Component({
   selector: 'app-dashboard-active-agent',

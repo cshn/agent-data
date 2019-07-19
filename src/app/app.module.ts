@@ -12,6 +12,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardActiveAgentComponent } from './dashboard-active-agent/dashboard-active-agent.component';
+import { DashboardAreaComponent } from './dashboard-area/dashboard-area.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DashboardActiveAgentComponent } from './dashboard-active-agent/dashboar
     DashboardComponent,
     SideBarComponent,
     NavBarComponent,
-    DashboardActiveAgentComponent
+    DashboardActiveAgentComponent,
+    DashboardAreaComponent
   ],
   imports: [
     BrowserModule,
