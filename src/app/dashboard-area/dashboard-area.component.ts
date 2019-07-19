@@ -85,7 +85,7 @@ export class DashboardAreaComponent implements OnInit {
     this.barChartData = [];
     this.barChartLabels = [];
     this.agentSet.forEach(e => {
-      if(this.agentHash[e] > 20) {
+      if(this.agentHash[e] > 15) {
         this.barChartLabels.push(e);
         chartData.push(this.agentHash[e]);
       }
