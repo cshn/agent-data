@@ -1,3 +1,3 @@
 export interface IHash {
-    [detail: string] : number;
+    [key: string] : number;
 }

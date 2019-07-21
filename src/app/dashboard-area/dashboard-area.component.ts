@@ -6,6 +6,7 @@ import { Transaction } from '../model/transaction';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { IHash } from '../model/ihash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard-area',
@@ -66,10 +67,11 @@ export class DashboardAreaComponent implements OnInit {
   getTrans(): void {
       const area = this.route.snapshot.paramMap.get('area');
       const splittedArea = area.replace(/_/i, '/'); 
-      console.log(splittedArea);
+    //  console.log(splittedArea);
       this.agentService.getTransactionByArea(splittedArea)
         .subscribe(ts => {
           this.rowData = ts.result.records;
+          ts.complete_date_txt = moment(new Date(ts.complete_date_txt)).format('YYYY-MM-DD');
           this.rowData.forEach(e => {
             this.areaSet.add(e.town_txt);
             if (this.agentSet.has(e.salesperson_name)) {
@@ -83,19 +85,36 @@ export class DashboardAreaComponent implements OnInit {
   }
 
   topAgent(): void {
-    var chartData = [];
     this.barChartData = [];
     this.barChartLabels = [];
     this.agentSet.forEach(e => {
-      if(this.agentHash[e] > 15) {
+      if(this.agentHash[e] > 1) {
         this.barChartLabels.push(e);
-        chartData.push(this.agentHash[e]);
       }
     })
-    this.barChartData.push({data: chartData, label: "Top Agent"});
-    // this.areaSet.forEach(e => {
-    //   console.log('{"town_txt": "' + e + '"},');
-    // })
+    
+    var len = this.barChartLabels.length;
+    var dict = this.agentHash;
+    var sortedDict = [];
+    for (var i = 0; i < len; i++)
+    {
+        var k = this.barChartLabels[i];
+        sortedDict.push({'key': k, 'value':dict[k]});
+    }
+    
+    sortedDict.sort(function(first, second) {
+      return second.value - first.value;
+    });
+    
+    //Result
+    var chartData = [];
+    this.barChartLabels = [];
+    sortedDict.slice(0,10).forEach(e => {
+      this.barChartLabels.push(e.key);
+      chartData.push(e.value);
+    })
+    this.barChartData.push({data: chartData, label: "Top 10 Agent"});
+    
   }
 
   autoSizeAll() {
