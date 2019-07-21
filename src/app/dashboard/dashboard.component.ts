@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
       this.barChartLabels.push(e.key);
       chartData.push(e.value);
     })
-    this.barChartData.push({data: chartData, label: "Top 10 Agent"});
+    this.barChartData.push({data: chartData, label: "Top 10 Agent By HDB Transaction"});
 
   }
 
