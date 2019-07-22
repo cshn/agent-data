@@ -63,3 +63,8 @@
     height: 20px;
     flex: 1;
   }
+
+  button {
+    font-size: 0.8em;
+    font: tahoma;
+  }
