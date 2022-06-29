@@ -30,10 +30,14 @@ export class DashboardAreaComponent implements OnInit {
     }
 
   columnDefs = [
-    {headerName: 'salesperson_reg_no', field: 'salesperson_reg_no', filter: true, resizable: true, sortable: true},
-    {headerName: 'town_txt', field: 'town_txt', filter: true, resizable: true, sortable: true},
+    {headerName: 'salesperson_reg_num', field: 'salesperson_reg_num', filter: true, resizable: true, sortable: true},
+    {headerName: 'town', field: 'town', filter: true, resizable: true, sortable: true},
     {headerName: 'salesperson_name', field: 'salesperson_name', filter: true, resizable: true, sortable: true},
-    {headerName: 'complete_date_txt', field: 'complete_date_txt', filter: true, resizable: true, sortable: true},
+    {headerName: 'transaction_date', field: 'transaction_date', filter: true, resizable: true, sortable: true},
+    {headerName: 'district', field: 'district', filter: true, resizable: true, sortable: true},
+    {headerName: 'property_type', field: 'property_type', filter: true, resizable: true, sortable: true},
+    {headerName: 'transaction_type', field: 'transaction_type', filter: true, resizable: true, sortable: true},
+    {headerName: 'general_location', field: 'general_location', filter: true, resizable: true, sortable: true},
     {headerName: 'represented', field: 'represented', filter: true, resizable: true, sortable: true}
   ];
 
@@ -71,7 +75,7 @@ export class DashboardAreaComponent implements OnInit {
       this.agentService.getTransactionByArea(splittedArea)
         .subscribe(ts => {
           this.rowData = ts.result.records;
-          ts.complete_date_txt = moment(new Date(ts.complete_date_txt)).format('YYYY-MM-DD');
+          ts.transaction_date = moment(new Date(ts.transaction_date)).format('YYYY-MM-DD');
           this.rowData.forEach(e => {
             this.areaSet.add(e.town_txt);
             if (this.agentSet.has(e.salesperson_name)) {

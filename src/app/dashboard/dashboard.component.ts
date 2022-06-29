@@ -43,10 +43,14 @@ export class DashboardComponent implements OnInit {
   public barChartData = [];
   
   columnDefs = [
-    {headerName: 'salesperson_reg_no', field: 'salesperson_reg_no', filter: true, resizable: true, sortable: true},
-    {headerName: 'town_txt', field: 'town_txt', filter: true, resizable: true, sortable: true},
+    {headerName: 'salesperson_reg_num', field: 'salesperson_reg_num', filter: true, resizable: true, sortable: true},
+    {headerName: 'town', field: 'town', filter: true, resizable: true, sortable: true},
     {headerName: 'salesperson_name', field: 'salesperson_name', filter: true, resizable: true, sortable: true},
-    {headerName: 'complete_date_txt', field: 'complete_date_txt', filter: true, resizable: true, sortable: true},
+    {headerName: 'transaction_date', field: 'transaction_date', filter: true, resizable: true, sortable: true},
+    {headerName: 'district', field: 'district', filter: true, resizable: true, sortable: true},
+    {headerName: 'property_type', field: 'property_type', filter: true, resizable: true, sortable: true},
+    {headerName: 'transaction_type', field: 'transaction_type', filter: true, resizable: true, sortable: true},
+    {headerName: 'general_location', field: 'general_location', filter: true, resizable: true, sortable: true},
     {headerName: 'represented', field: 'represented', filter: true, resizable: true, sortable: true}
   ];
 
@@ -58,8 +62,8 @@ export class DashboardComponent implements OnInit {
       .subscribe(transactions => {
         this.rowData = transactions.result.records;
         this.rowData.forEach(e => {
-          e.complete_date_txt = moment(new Date(e.complete_date_txt)).format('YYYY-MM-DD');
-          this.areaSet.add(e.town_txt);
+          e.transaction_date = moment(new Date(e.transaction_date)).format('YYYY-MM-DD');
+          this.areaSet.add(e.town);
           if (this.agentSet.has(e.salesperson_name)) {
             this.agentHash[e.salesperson_name] = this.agentHash[e.salesperson_name] + 1;
           } else {
@@ -99,7 +103,7 @@ export class DashboardComponent implements OnInit {
       this.barChartLabels.push(e.key);
       chartData.push(e.value);
     })
-    this.barChartData.push({data: chartData, label: "Top 10 Agent By HDB Transaction"});
+    this.barChartData.push({data: chartData, label: "Top 10 Agent By Transaction"});
 
   }
 
