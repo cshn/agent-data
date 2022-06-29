@@ -5,7 +5,6 @@ import { AgentService } from '../agent.service';
 import { Transaction } from '../model/transaction';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { IHash } from '../model/ihash';
 import * as moment from 'moment';
 
 @Component({
@@ -17,12 +16,8 @@ export class DashboardTypeComponent implements OnInit {
 
   areas: Ttype[] = TTYPE_STATIC;
   transactions: Transaction[];
-  areaSet = new Set();
-  agentSet = new Set();
-  agentHash : IHash = {};
   private gridApi;
   private gridColumnApi;
-  showbutton = 0;
 
   constructor(private route: ActivatedRoute,
     private agentService: AgentService, private router: Router) { 
@@ -73,15 +68,8 @@ export class DashboardTypeComponent implements OnInit {
       this.agentService.getTransactionByArea(type)
         .subscribe(ts => {
           this.rowData = ts.result.records;
-          ts.transaction_date = moment(new Date(ts.transaction_date)).format('YYYY-MM-DD');
           this.rowData.forEach(e => {
-            this.areaSet.add(e.transaction_type);
-            if (this.agentSet.has(e.salesperson_name)) {
-              this.agentHash[e.salesperson_name] = this.agentHash[e.salesperson_name] + 1;
-            } else {
-              this.agentSet.add(e.salesperson_name);
-              this.agentHash[e.salesperson_name] = 1;
-            }
+            e.transaction_date = moment(new Date(e.transaction_date)).format('YYYY-MM-DD');
           })
       }); 
   }
@@ -98,7 +86,6 @@ export class DashboardTypeComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.autoSizeAll();
-    this.showbutton = 1;
   }
 
 }

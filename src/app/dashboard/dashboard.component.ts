@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from '../agent.service';
 import { Transaction } from '../model/transaction';
-import { IHash } from '../model/ihash';
 import * as moment from 'moment';
 
 @Component({
@@ -12,13 +11,8 @@ import * as moment from 'moment';
 export class DashboardComponent implements OnInit {
 
   transactions: Transaction[];
-  areaSet = new Set();
-  agentSet = new Set();
-  agentHash : IHash = {};
   private gridApi;
   private gridColumnApi;
-  showbutton = 0;
-  
  
   constructor(private agentService: AgentService) { }
 
@@ -63,13 +57,6 @@ export class DashboardComponent implements OnInit {
         this.rowData = transactions.result.records;
         this.rowData.forEach(e => {
           e.transaction_date = moment(new Date(e.transaction_date)).format('YYYY-MM-DD');
-          this.areaSet.add(e.town);
-          if (this.agentSet.has(e.salesperson_name)) {
-            this.agentHash[e.salesperson_name] = this.agentHash[e.salesperson_name] + 1;
-          } else {
-            this.agentSet.add(e.salesperson_name);
-            this.agentHash[e.salesperson_name] = 1;
-          }
         })
       });
   }
@@ -86,6 +73,5 @@ export class DashboardComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.autoSizeAll();
-    this.showbutton = 1;
   }
 }
