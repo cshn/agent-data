@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Area } from '../dashboard-area/area';
-import { AREA_STATIC } from '../dashboard-area/area-static';
 import { Ttype } from '../dashboard-type/ttype';
 import { TTYPE_STATIC } from '../dashboard-type/ttype-static';
 

@@ -74,39 +74,6 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  topAgent(): void {
-    this.barChartData = [];
-    this.barChartLabels = [];
-    this.agentSet.forEach(e => {
-      if(this.agentHash[e] > 10) {
-        this.barChartLabels.push(e);
-      }
-    })
-
-    var len = this.barChartLabels.length;
-    var dict = this.agentHash;
-    var sortedDict = [];
-    for (var i = 0; i < len; i++)
-    {
-        var k = this.barChartLabels[i];
-        sortedDict.push({'key': k, 'value':dict[k]});
-    }
-    
-    sortedDict.sort(function(first, second) {
-      return second.value - first.value;
-    });
-    
-    //Result
-    var chartData = [];
-    this.barChartLabels = [];
-    sortedDict.slice(0,10).forEach(e => {
-      this.barChartLabels.push(e.key);
-      chartData.push(e.value);
-    })
-    this.barChartData.push({data: chartData, label: "Top 10 Agent By Transaction"});
-
-  }
-
   autoSizeAll() {
     var allColumnIds = [];
     this.gridColumnApi.getAllColumns().forEach(function(column) {
