@@ -113,8 +113,13 @@
               "devServerTarget": "agent-data:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "agent-data"
 }
