@@ -26,5 +26,6 @@ export const AREA_STATIC: Area[] = [
     {town_txt: "SEMBAWANG"},
     {town_txt: "TOA PAYOH"},
     {town_txt: "BISHAN"},
-    {town_txt: "BUKIT TIMAH"}
+    {town_txt: "BUKIT TIMAH"},
+    {town_txt: "-"}
 ]

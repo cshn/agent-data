@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Area } from './area';
-import { AREA_STATIC } from './area-static';
+import { Ttype } from './ttype';
+import { TTYPE_STATIC } from './ttype-static';
 import { AgentService } from '../agent.service';
 import { Transaction } from '../model/transaction';
 import { ActivatedRoute } from '@angular/router';
@@ -9,13 +9,13 @@ import { IHash } from '../model/ihash';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-dashboard-area',
-  templateUrl: './dashboard-area.component.html',
-  styleUrls: ['./dashboard-area.component.css']
+  selector: 'app-dashboard-type',
+  templateUrl: './dashboard-type.component.html',
+  styleUrls: ['./dashboard-type.component.css']
 })
-export class DashboardAreaComponent implements OnInit {
+export class DashboardTypeComponent implements OnInit {
 
-  areas: Area[] = AREA_STATIC;
+  areas: Ttype[] = TTYPE_STATIC;
   transactions: Transaction[];
   areaSet = new Set();
   agentSet = new Set();
@@ -69,15 +69,13 @@ export class DashboardAreaComponent implements OnInit {
   }
 
   getTrans(): void {
-      const area = this.route.snapshot.paramMap.get('area');
-      const splittedArea = area.replace(/_/i, '/'); 
-    //  console.log(splittedArea);
-      this.agentService.getTransactionByArea(splittedArea)
+      const type = this.route.snapshot.paramMap.get('type');
+      this.agentService.getTransactionByArea(type)
         .subscribe(ts => {
           this.rowData = ts.result.records;
           ts.transaction_date = moment(new Date(ts.transaction_date)).format('YYYY-MM-DD');
           this.rowData.forEach(e => {
-            this.areaSet.add(e.town);
+            this.areaSet.add(e.transaction_type);
             if (this.agentSet.has(e.salesperson_name)) {
               this.agentHash[e.salesperson_name] = this.agentHash[e.salesperson_name] + 1;
             } else {
@@ -135,4 +133,5 @@ export class DashboardAreaComponent implements OnInit {
     this.autoSizeAll();
     this.showbutton = 1;
   }
+
 }

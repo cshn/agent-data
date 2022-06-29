@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Area } from '../dashboard-area/area';
 import { AREA_STATIC } from '../dashboard-area/area-static';
+import { Ttype } from '../dashboard-type/ttype';
+import { TTYPE_STATIC } from '../dashboard-type/ttype-static';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,7 +11,7 @@ import { AREA_STATIC } from '../dashboard-area/area-static';
 })
 export class SideBarComponent implements OnInit {
 
-  areas: Area[] = AREA_STATIC;
+  types: Ttype[] = TTYPE_STATIC;
   constructor() { }
 
   ngOnInit() {
