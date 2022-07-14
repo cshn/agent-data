@@ -4,19 +4,14 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 2 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
               ACTIVE AGENT
             </a>
-          </li>
-        <li class="nav-item">
+        </li>
+        <!-- <li class="nav-item">
           <a class="nav-link active" routerLink="/dashboard">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 2 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
             SINGAPORE
           </a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" *ngFor="let a of areas" routerLink="/dashboardarea/{{a.town_txt}}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 2 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-            {{a.town_txt}}
-          </a>
         </li> -->
+        
         <li class="nav-item">
           <a class="nav-link" *ngFor="let t of types" routerLink="/dashboardtype/{{t.transaction_type}}">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 2 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>

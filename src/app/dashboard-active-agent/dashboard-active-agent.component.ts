@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AgentService } from '../agent.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard-active-agent',
@@ -32,6 +33,7 @@ export class DashboardActiveAgentComponent implements OnInit {
     this.agentService.getAllAgents()
       .subscribe(agents => {
         this.rowData = agents.result.records;
+        
       });
   }
 

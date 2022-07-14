@@ -68,3 +68,7 @@
     font-size: 0.8em;
     font: tahoma;
   }
+
+  .ag-status-bar {
+    min-height: 35px;
+}

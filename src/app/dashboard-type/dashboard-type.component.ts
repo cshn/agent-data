@@ -18,6 +18,7 @@ export class DashboardTypeComponent implements OnInit {
   transactions: Transaction[];
   private gridApi;
   private gridColumnApi;
+  showbutton;
 
   constructor(private route: ActivatedRoute,
     private agentService: AgentService, private router: Router) { 
@@ -40,6 +41,7 @@ export class DashboardTypeComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.showbutton=true;
     this.getTrans();
   }
 
@@ -70,6 +72,9 @@ export class DashboardTypeComponent implements OnInit {
           this.rowData = ts.result.records;
           this.rowData.forEach(e => {
             e.transaction_date = moment(new Date(e.transaction_date)).format('YYYY-MM-DD');
+            // console.log('{"estateAgentLicenseNo": "' + e.estate_agent_license_no + '", "registration_no": ' + e.registration_no
+            //   + ', "salesperson_name": "' + e.salesperson_name + '", "registration_start_date": ' + e.registration_start_date + ', "registration": ' + e.registration
+            //   + ', "size": ' + e.size + '},');
           })
       }); 
   }
@@ -80,11 +85,24 @@ export class DashboardTypeComponent implements OnInit {
       allColumnIds.push(column.colId);
     });
     this.gridColumnApi.autoSizeColumns(allColumnIds);
+
+  }
+
+  sortByTranDate() {
+    const sort = [
+      {
+        colId: "transaction_date",
+        sort: "desc",
+      }
+    ];
+    this.gridApi.setSortModel(sort); 
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.showbutton=false;
+    this.sortByTranDate();
     this.autoSizeAll();
   }
 
