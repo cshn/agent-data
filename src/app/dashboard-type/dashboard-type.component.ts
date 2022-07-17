@@ -19,6 +19,7 @@ export class DashboardTypeComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
   showbutton;
+  showtable;
 
   constructor(private route: ActivatedRoute,
     private agentService: AgentService, private router: Router) { 
@@ -42,6 +43,7 @@ export class DashboardTypeComponent implements OnInit {
 
   ngOnInit() {
     this.showbutton=true;
+    this.showtable=false;
     this.getTrans();
   }
 
@@ -102,6 +104,7 @@ export class DashboardTypeComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.showbutton=false;
+    this.showtable=true;
     this.sortByTranDate();
     this.autoSizeAll();
   }
