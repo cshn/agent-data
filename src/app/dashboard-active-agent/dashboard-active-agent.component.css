@@ -56,9 +56,9 @@
   }
 
   .button-bar {
-      padding-bottom: 4px;
-  }
-
+    padding-bottom: 4px;
+    font-size: 200%;
+}
   .grid-wrapper {
     height: 20px;
     flex: 1;

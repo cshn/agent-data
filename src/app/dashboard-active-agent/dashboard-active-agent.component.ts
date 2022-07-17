@@ -10,10 +10,12 @@ import * as moment from 'moment';
 export class DashboardActiveAgentComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
+  showbutton;
  
   constructor(private agentService: AgentService) { }
 
   ngOnInit() {
+    this.showbutton=true;
     this.getAgentData();
   }
 
@@ -48,6 +50,7 @@ export class DashboardActiveAgentComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.showbutton=false;
     this.autoSizeAll();
   }
 
